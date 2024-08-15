@@ -9,19 +9,17 @@ if __name__ == '__main__':
     print("HELLO! :) let's debug :vibing_potato:")
     
     #adding items for testing
-    Magazine1 = Magazine("Magazine1")
-    Magazine2 = Magazine("Magazine2")
-    Magazine3 = Magazine("Magazine3")
-    Magazine4 = Magazine("Magazine4")
-    Magazine5 = Magazine("Magazine5")
-
+    Magazine1 = Magazine("Magazine1", "CategoryA")
+    Magazine2 = Magazine("Magazine2", "CategoryA")
+    Magazine3 = Magazine("Magazine3", "CategoryB")
+    Magazine4 = Magazine("Magazine4", "CategoryC")
+    Magazine5 = Magazine("Magazine5", "CategoryD")
 
     Author1 = Author("Author1")
     Author2 = Author("Author2")
     Author3 = Author("Author3")
     Author4 = Author("Author4")
     Author5 = Author("Author5")
-
 
     Article1 = Article(Author1, Magazine1, "TitleA")
     Article2 = Article(Author2, Magazine2, "TitleB")

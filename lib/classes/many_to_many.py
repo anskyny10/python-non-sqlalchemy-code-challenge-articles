@@ -63,9 +63,13 @@ class Author:
         return f"<Author {self.name}>"
 
 class Magazine:
+    # to be all magazines for the class method
+    all = []
+    
     def __init__(self, name, category):
         self.name = name
         self.category = category
+        Magazine.all.append(self)
 
     # list of all the articles the magazine has published
     def articles(self):
@@ -88,6 +92,26 @@ class Magazine:
             return [article.author for article in self.articles()]
         else:
             return None
+    
+    # the magazine instance with the most articles, None if no articles 
+    @classmethod
+    def top_publisher(cls):
+        # dictionary to count the articles per magazine publisher
+        magazine_article_count = {}
+    
+        # add all the magazines and their article counts to the dictionary, ignoring any magazines without articles
+        for magazine in cls.all:
+            article_count = len(magazine.articles())
+            if article_count > 0:
+                magazine_article_count[magazine] = article_count
+
+        # return None if no articles left in the dictionary
+        if len(magazine_article_count) == 0:
+            return None
+        
+        # find and return the magazine publisher with most articles
+        top_mag = max(magazine_article_count, key=magazine_article_count.get)
+        return top_mag
     
     @property
     def name(self):
@@ -113,4 +137,4 @@ class Magazine:
     
     # for debugging
     def __repr__(self):
-        return f"<Magazine {self.name}>"
+        return f"<Magazine name={self.name} category={self.category}>"
