@@ -87,11 +87,36 @@ class Magazine:
             return [article.title for article in self.articles()]
 
     # list of authors who have written more than 2 articles for this magazine, None if magazine has not authors matching that criteria
-    def contributing_authors(self):
-        if(len(self.articles()) > 2):
-            return [article.author for article in self.articles()]
-        else:
+    def contributing_authors(self):      
+        # if magazine has not published any articles
+        if not self.articles():
             return None
+
+        # dictionary to count the articles per author
+        author_article_count = {}
+        
+        # add all the authors and their article counts to the dictionary
+        for article in self.articles():
+            author = article.author
+            if author in author_article_count:
+                author_article_count[author] += 1
+            else:
+                author_article_count[author] = 1
+
+        # list of authors with more than 2 articles
+        contributing_authors = [author for author, count in author_article_count.items() if count > 2]
+    
+        # return None if no authors left in the list
+        if not contributing_authors:
+            return None
+        
+        return contributing_authors
+    
+        # passes test but does not count per author but per magazine
+        # if(len(self.articles()) > 2):
+        #     return [article.author for article in self.articles()]
+        # else:
+        #     return None
     
     # the magazine instance with the most articles, None if no articles 
     @classmethod
